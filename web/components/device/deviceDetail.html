@@ -1,0 +1,118 @@
+<div class="admin_page">
+	<div class="d_title">
+		<p>{{vm.titleNm}}</p>
+		<div class="d_side">
+			<a href=""><span>Admin</span></a>&nbsp;&gt;&nbsp;
+			<a href=""><span>지원시설 관리</span></a>&nbsp;&gt;&nbsp;
+			<a href="#deviceList"><span>자재관리</span></a>&nbsp;&gt;&nbsp;
+			<a href=""><span>{{vm.titleNm}}</span></a>
+		</div>
+	</div>
+
+	<div class="content_box">
+		<div class="box_r">
+			<p class="nt_desc"><span class="asterisk"></span>필수입력항목</p>
+		</div>
+		<div class="table_wrap">
+			<div class="table_form">
+				<table class="table">
+				<tbody>
+				  <tr>
+					<th><span class="asterisk"></span>제조사</th>
+					<td><input id="makrNm" name="makrNm" type="text" ng-model="vm.deviceDetail.makrNm" required/></td>
+				  </tr>
+				  <tr>
+					<th><span class="asterisk"></span>디바이스 모델 타입</th>
+					<td><input id="devModelTypeNm" name="devModelTypeNm" type="text" ng-model="vm.deviceDetail.devModelTypeNm" required/></td>
+				  </tr>
+				  <tr>
+					<th><span class="asterisk"></span>디바이스명</th>
+					<td><input id="devNm" name="devNm" type="text" class="width-full" ng-model="vm.deviceDetail.devNm" required/></td>
+				  </tr>
+				  <tr>
+					<th>펌웨어 버전</th>
+					<td><input id="frmwrVerVal" name="frmwrVerVal" type="text" ng-model="vm.deviceDetail.frmwrVerVal" required/></td>
+				  </tr>
+				  <tr>
+					<th>제어방식</th>
+					<td><input id="contlInfoSbst" name="contlInfoSbst" type="text" ng-model="vm.deviceDetail.contlInfoSbst" required/></td>
+				  </tr>
+				  <tr>
+					<th>제어정보</th>
+					<td><input id="contlFormlSbst" name="contlFormlSbst" type="text" ng-model="vm.deviceDetail.contlFormlSbst" required/></td>
+				  </tr>
+				  <tr>
+					<th><span class="asterisk"></span>상세설명</th>
+					<td>
+						<textarea cols="100" rows="10" ng-model="vm.deviceDetail.dtlSbst"></textarea>
+					</td>
+				  </tr>
+				  <tr>
+					<th><span class="asterisk"></span>썸네일 이미지</th>
+					<!-- <td>
+						<input type="text" class="finput"/><a href="" class="ckbutton">파일찾기</a>
+						<p class="b_noti"><span class="asterisk"></span> 최적 사이즈: 360(w)*216(h), 가능확장자 jpg, gif, png</p>
+					</td> -->
+					<td>
+						<!-- <img alt="" src="{{vm.deviceDetail.deviceImgPath}}" style="display:block"/> -->
+						<input id="thumFile" type="hidden" ng-file-select="vm.onFileSelect($files, 'thum')" ng-model="file">
+						<a href="" ng-click="vm.fileSelectPop('thum')" class="ckbutton">파일선택</a>
+						<ul class="data_list">
+							<li ng-repeat="thumFile in vm.tempThumFiles">
+								<span> {{thumFile.fileNm}}  ({{thumFile.fileSize}}kb)<a href="" class="file_remove" ng-click="vm.fileDel(thumFile, 'thum')"></a></span>
+							</li>
+						</ul>
+						<p class="b_noti">* 최적 사이즈: 360(w)*216(h), 가능확장자 jpg, gif, png</p>
+					</td>
+				  </tr>
+				  <tr>
+					<th>첨부파일</th>
+					<td>
+						<a href="" ng-click="vm.fileSelectPop('attach')" class="ckbutton">파일선택</a>
+						<input id="attachFile" type="hidden" ng-file-select="vm.onFileSelect($files, 'attach')" ng-model="vm.file">
+						<ul class="data_list">
+							<li ng-repeat="attachFile in vm.tempAttachFiles">
+								<span>{{attachFile.fileNm}}  ({{attachFile.fileSize}}kb)<a href="" class="file_remove" ng-click="vm.fileDel(attachFile, 'attach')"></a></span>
+							</li>
+						</ul>
+					</td>
+				  </tr>
+				  <tr>
+					<th>공개 여부</th>
+					<td>
+						<div class="radio">
+						  <label>
+							<input type="radio" ng-model="vm.deviceDetail.ottpYn" value="Y" ng-init="vm.deviceDetail.ottpYn = 'Y'">
+							Y
+						  </label>
+						</div>
+						<div class="radio">
+						  <label>
+							<input type="radio" ng-model="vm.deviceDetail.ottpYn" value="N">
+							N
+						  </label>
+						</div>
+					</td>
+				  </tr>
+				  <tr ng-show="vm.devMtrlSeq">
+					<th>등록자 아이디</th>
+					<td>{{vm.deviceDetail.cretrId}}</td>
+				  </tr>
+				  <tr ng-show="vm.devMtrlSeq">
+					<th>등록일시</th>
+					<td>{{vm.deviceDetail.cretDt}}</td>
+				  </tr>
+				</tbody>
+			  </table>
+			</div>
+		</div>
+		<div class="btn_wrap">
+			<a href="" class="iot_btn" ng-click="vm.updateDevice()" ng-show="vm.devMtrlSeq">수정</a>
+			<a href="" class="iot_btn" ng-click="vm.insertDevice()" ng-show="!vm.devMtrlSeq">저장</a>
+			<a href="" class="iot_btn" ng-click="vm.deleteDevice()" ng-show="vm.devMtrlSeq">삭제</a>
+			<a href="" ui-sref="device.deviceMgt.deviceList" class="iot_btn pull-left">목록</a>
+		</div>
+	</div>
+</div>
+
+

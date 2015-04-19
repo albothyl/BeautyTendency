@@ -1,0 +1,61 @@
+<div class="admin_page">
+	<div class="d_title">
+		<p>자재관리</p>
+		<div class="d_side">
+			<a href=""><span>Admin</span></a>&nbsp;&gt;&nbsp;
+			<a href=""><span>지원시설 관리</span></a>&nbsp;&gt;&nbsp;
+			<a href=""><span>자재관리</span></a>
+		</div>
+	</div>
+
+	<div class="content_box setting1">
+		<div id="" class="search_box type1">
+			<select class="sort_select" ng-model="vm.searchType" ng-init="vm.searchType = vm.searchTypeList[0]" ng-options="c.dtlCdNm for c in vm.searchTypeList">
+			</select>
+			<div class="d_search">
+				<span class="input_r">
+					<label for="inpu_a">검색어를 입력하세요.</label>
+					<input type="text" id="inpu_a" ng-model="vm.searchInfo.searchTxt"/>
+				</span>
+				<a href="" ng-click="vm.getSearchDeviceList()" class="btn_find"></a>
+			</div>
+		</div>
+
+		<div class="table_wrap2">
+			<!-- <table kt-grid="grid1" data="vm.deviceList" on-page-change="vm.pageChanged()" grid-height="200" grid-width="980" autowidth="true" row-num="5" sortable="true" pager="true" class="table"> -->
+			<table kt-grid="grid1" data="vm.deviceList" pager="true" grid-height="200" grid-width="980" autowidth="true" row-num="5" on-page-change="vm.pageChanged()">
+				<thead>
+					<tr>
+						<th>번호</th>
+						<th>디바이스 이미지</th>
+						<th>제조사</th>
+						<th>디바이스 모델타입</th>
+						<th>디바이스 명</th>
+						<th>등록일</th>
+						<th>공개여부</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr on-select-row="vm.rowSelect()">
+						<td width="30px">{{rowNumber}}</td>
+						<td formatter="vm.imageFormatter" width="60px">{{deviceImgPath}}</td>
+						<td width="70px">{{makrNm}}</td>
+						<td width="70px">{{devModelTypeNm}}</td>
+						<td width="150px">{{devNm}}</td>
+						<td width="60px">{{cretDt}}</td>
+						<td width="30px">{{ottpYn}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+
+		<div class="btn_wrap">
+			<!-- <div class="paging">
+				<pagination num-pages='vm.pagingInfo.total' current-page='vm.curPage' max-size="10" on-select-page="vm.pageChanged()">
+				</pagination>
+			</div> -->
+			<a href="" ui-sref="device.deviceMgt.deviceDetail" class="iot_btn">등록</a>
+		</div>
+	</div>
+</div>
