@@ -1,4 +1,4 @@
-import com.beauty.tendency.configrations.RepositoryConfigration
+import com.beauty.tendency.configrations.RepositoryConfiguration
 import org.junit.Assert
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.ContextConfiguration
@@ -10,7 +10,7 @@ import javax.sql.DataSource
 /**
  * Created by on 2015. 4. 13..
  */
-@ContextConfiguration(classes = [RepositoryConfigration.class])
+@ContextConfiguration(classes = [RepositoryConfiguration.class])
 class DataBaseConnectionGroovyTest extends Specification {
     @Autowired
     DataSource dataSource;
