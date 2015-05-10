@@ -14,7 +14,7 @@ import java.sql.SQLException;
  */
 @Configuration
 @PropertySource("classpath:beautyTendency.properties/project-develop.xml")
-public class RepositoryConfiguration {
+public class RepositoryConfig {
     @Autowired
     private Environment environment;
 
