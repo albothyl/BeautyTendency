@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+         xmlns:security="http://www.springframework.org/schema/security"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+           http://www.springframework.org/schema/security
+           http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+	<security:http pattern="/resources/**" security="none"/>
+
+  	<security:http auto-config="false" entry-point-ref="authenticationEntryPoint">
+		<security:intercept-url pattern="/mypage/**" access="ROLE_001" />
+		<security:intercept-url pattern="/device/**" access="ROLE_001" />
+		<security:intercept-url pattern="/supportPgm/applicationEducation" access="ROLE_001" />
+		<security:intercept-url pattern="/supportPgm/deviceReservation" access="ROLE_001" />
+		<security:intercept-url pattern="/cms/**" access="ROLE_000" />
+
+		<!-- 접근 권한 핸들러 -->
+		<security:access-denied-handler ref="customAccessDeniedHandler"/>
+
+  		<!-- 로그인관련 프로세스 필터 -->
+  		<security:custom-filter position="FORM_LOGIN_FILTER" ref="ktAuthenticationProcessingFilter" />
+
+  	</security:http>
+
+	<!-- 접근 권한 핸들러 빈-->
+	<bean id="customAccessDeniedHandler" class="com.kt.iot.framework.security.filter.CustomAccessDeniedHandler" />
+
+
+	<!-- 로그인관련 프로세스 필터 빈 -->
+    <bean id="ktAuthenticationProcessingFilter" class="com.kt.iot.framework.security.filter.LoginProcessFilter">
+
+    	<property name="authenticationManager" ref="authenticationManager" />
+
+    	<!-- 로그인 요청 URL -->
+	    <property name="filterProcessesUrl" value = "/loginProcess" />
+
+        <!-- 로그인 성공 -->
+        <property name="authenticationSuccessHandler">
+	        <bean id="authenticationSuccessHandler"  class="com.kt.iot.framework.security.filter.LoginSuccessHandler">
+	        	<property name="alwaysUseDefaultTargetUrl"  value="false" />
+	            <property name="defaultTargetUrl" value="/" />
+	        </bean>
+	    </property>
+
+	    <!-- 로그인 실패 -->
+	    <property name="authenticationFailureHandler">
+             <bean id="authenticationFailureHandler"   class="com.kt.iot.framework.security.filter.LoginFailureHandler" >
+                <constructor-arg name="defaultFailureUrl"  value="/auth/login?fail=true" />
+                <property name="useForward"  value="true" />
+             </bean>
+        </property>
+	</bean>
+
+
+	<!-- security context set user -->
+	<security:authentication-manager alias="authenticationManager">
+		<security:authentication-provider ref="customAuthenticationProvider" />
+	</security:authentication-manager>
+
+
+	<bean id="customAuthenticationProvider" class="com.kt.iot.framework.security.filter.CustomAuthenticationProvider"></bean>
+
+	<bean id="authenticationEntryPoint"
+		class= "org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+		<constructor-arg  name="loginFormUrl" value="/authMgt/accessDenied" />
+ 	</bean>
+
+</beans>

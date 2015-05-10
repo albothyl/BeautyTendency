@@ -17,17 +17,21 @@ def servletVersion = '3.1.0'
 dependencies {
     compile "org.springframework:spring-webmvc:${springVersion}"
     compile "org.springframework:spring-context:${springVersion}"
+	compile "org.springframework.security:spring-security-web:4.0.1.RELEASE"
     compile "org.springframework:spring-jdbc:${springVersion}"
 
     compile "mysql:mysql-connector-java:${mysqlVersion}"
 
     compile "com.google.guava:guava:${guavaVersion}"
+	compile "org.codehaus.jackson:jackson-mapper-asl:1.9.13"
 
     compile "javax.servlet:javax.servlet-api:${servletVersion}"
 
     testCompile "org.springframework:spring-test:${springVersion}"
     testCompile "org.spockframework:spock-core:${spockVersion}"
     testCompile "org.spockframework:spock-spring:${spockVersion}"
+
+
 }
 
 buildscript {
