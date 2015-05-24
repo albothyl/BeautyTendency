@@ -2,7 +2,7 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
     <comment>프로젝트 설정 - develop</comment>
-    <entry key="beautyTendency.mysql.jdbc.url">jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&amp;characterEncoding=UTF8</entry>
+    <entry key="beautyTendency.mysql.jdbc.url">jdbc:mysql://127.0.0.1:3306/toby?useUnicode=true&amp;characterEncoding=UTF8</entry>
     <entry key="beautyTendency.mysql.jdbc.username">root</entry>
     <entry key="beautyTendency.mysql.jdbc.password">jhwqqq2842!</entry>
 </properties>

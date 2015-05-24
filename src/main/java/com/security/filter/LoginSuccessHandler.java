@@ -1,18 +1,15 @@
 package com.security.filter;
 
-import java.io.IOException;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.codehaus.groovy.control.messages.Message;
+import com.security.userdetails.CustomUserDetails;
+import com.security.vo.UserDetailsVO;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 
-import com.security.userdetails.CustomUserDetails;
-import com.security.vo.UserDetailsVO;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 public class LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
